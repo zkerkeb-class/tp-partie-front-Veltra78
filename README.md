@@ -1,16 +1,55 @@
-# React + Vite
+Voici le fichier read me du tp de technologie web.
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Lien de la vidéo youtube :
+https://youtu.be/oqUDSoui-tM
 
-Currently, two official plugins are available:
+https://youtu.be/oqUDSoui-tM
+## Fonctionnalités de Base
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) (or [oxc](https://oxc.rs) when used in [rolldown-vite](https://vite.dev/guide/rolldown)) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+### CRUD & Gestion des Pokémons
+- Afficher une liste de pokémon avec pagination (20 par 20)
+- Cliquer sur une carte pokémon pour accéder à la page détails
+- Modifier les infos d'un pokémon sur la page détails
+- Supprimer un pokémon avec modale d'avertissement
+- Ajouter un nouveau pokémon
+- Recherche par nom de pokémon
 
-## React Compiler
+## Fonctionnalités Bonus
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+### Système de Filtrage Avancé
+- Filtre par type (multi-sélection avec vrais couleurs Pokémon)
+- Filtre par numéro/ID (range slider min/max)
+- Système de tri complet:
+  - Par ID (croissant/décroissant)
+  - Par nom (A→Z / Z→A)
+- Bouton réinitialiser tous les filtres
+- Panneau filtres réductible (fermé par défaut)
 
-## Expanding the ESLint configuration
+### Support Multilingue
+- 8 langues disponibles: Français, English, Español, Deutsch, Italiano, 日本語, Português, 中文
+- Sélecteur de langue dans l'en-tête
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+### Images Shiny
+- Deux versions d'image pour chaque pokémon (Normal + Shiny)
+- Flèches pour basculer entre Normal et Shiny
+- Label pour identifier le type d'image affiché
+
+### Améliorations Visuelles & UX
+- Fond de carte colorisé selon le type principal du pokémon
+- Couleurs dynamiques des types dans les filtres (correspondance TCG)
+- Pas de scroll automatique lors du changement de page (reste à la même position)
+- Stats affichées au survol de la carte (grille 2x3)
+- Gradient et ombres 3D sur les cartes
+- Design responsive (mobile, tablet, desktop)
+
+### Détails Modal
+- Graphiques des stats avec visualisation
+- Affichage complet des informations
+- Formulaire d'édition intégré
+- Modale de confirmation avant suppression
+
+### Design & Architecture
+- Thème cohérent orange (#ff5722) sur toute l'application
+- Composants modulaires et réutilisables
+- Gestion d'erreurs détaillée
+- Sauvegarde des modifications en temps réel
