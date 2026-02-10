@@ -6,6 +6,7 @@ import PokeList from './components/pokelist'
 import PokemonDetails from './components/pokemonDetails'
 import AddPokemon from './components/addPokemon'
 import SearchBar from './components/searchBar'
+import LanguageSwitcher from './components/languageSwitcher'
 
 function App() {
   const [selectedPokemon, setSelectedPokemon] = useState(null);
@@ -13,6 +14,7 @@ function App() {
   const [refreshTrigger, setRefreshTrigger] = useState(0);
   const [searchResult, setSearchResult] = useState(null);
   const [isSearching, setIsSearching] = useState(false);
+  const [language, setLanguage] = useState('fr');
 
   const handleSelectPokemon = (pokemon) => {
     setSelectedPokemon(pokemon);
@@ -51,12 +53,18 @@ function App() {
     <div className="app-container">
       <div className="app-header">
         <Title label="Pokédex" />
-        <button 
-          className="add-pokemon-btn"
-          onClick={() => setShowAddPokemon(true)}
-        >
-          ➕ Ajouter un Pokémon
-        </button>
+        <div className="header-actions">
+          <button 
+            className="add-pokemon-btn"
+            onClick={() => setShowAddPokemon(true)}
+          >
+            ➕ Ajouter un Pokémon
+          </button>
+          <LanguageSwitcher 
+            currentLanguage={language}
+            onLanguageChange={setLanguage}
+          />
+        </div>
       </div>
       
       <SearchBar 
@@ -104,7 +112,7 @@ function App() {
           </div>
         </div>
       ) : (
-        <PokeList onSelectPokemon={handleSelectPokemon} key={refreshTrigger} />
+        <PokeList onSelectPokemon={handleSelectPokemon} language={language} key={refreshTrigger} />
       )}
 
       {showAddPokemon && (

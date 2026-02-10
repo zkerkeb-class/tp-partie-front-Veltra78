@@ -3,11 +3,17 @@ import "./style.css";
 
 const PokeCard = ({ pokemon, onSelectPokemon }) => {
     const [isHovered, setIsHovered] = useState(false);
+    const [showShiny, setShowShiny] = useState(false);
 
     const handleClick = () => {
         if (onSelectPokemon) {
             onSelectPokemon(pokemon);
         }
+    };
+
+    const toggleImage = (e) => {
+        e.stopPropagation();
+        setShowShiny(!showShiny);
     };
 
     const getTypeColor = (type) => {
@@ -40,15 +46,35 @@ const PokeCard = ({ pokemon, onSelectPokemon }) => {
             onClick={handleClick}
             onMouseEnter={() => setIsHovered(true)}
             onMouseLeave={() => setIsHovered(false)}
+            style={{ 
+                background: `linear-gradient(135deg, ${getTypeColor(pokemon.type[0])}20 0%, ${getTypeColor(pokemon.type[0])}10 100%)`
+            }}
         >
             <div className="poke-card-inner">
                 <div className="poke-card-front">
-                    <img 
-                        src={pokemon.image} 
-                        alt={pokemon.name.english}
-                        className="poke-image"
-                        onError={(e) => e.target.src = 'https://via.placeholder.com/200?text=No+Image'}
-                    />
+                    <div className="poke-image-container">
+                        <button 
+                            className="image-nav-btn left-btn"
+                            onClick={toggleImage}
+                            title={showShiny ? "Normal" : "Shiny"}
+                        >
+                            ◀
+                        </button>
+                        <img 
+                            src={showShiny ? (pokemon.shinyImage || pokemon.image) : pokemon.image} 
+                            alt={pokemon.name.english}
+                            className="poke-image"
+                            onError={(e) => e.target.src = 'https://via.placeholder.com/200?text=No+Image'}
+                        />
+                        <button 
+                            className="image-nav-btn right-btn"
+                            onClick={toggleImage}
+                            title={showShiny ? "Normal" : "Shiny"}
+                        >
+                            ▶
+                        </button>
+                        <span className="image-label">{showShiny ? "Shiny" : "Normal"}</span>
+                    </div>
                     <h3 className="poke-name">{pokemon.name.english}</h3>
                     <p className="poke-name-french">{pokemon.name.french}</p>
                     <div className="poke-types">

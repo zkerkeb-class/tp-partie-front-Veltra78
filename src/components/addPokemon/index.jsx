@@ -18,7 +18,8 @@ const AddPokemon = ({ onClose, onPokemonAdded }) => {
             SpecialDefense: 50,
             Speed: 50
         },
-        image: ''
+        image: '',
+        shinyImage: ''
     });
 
     const [isLoading, setIsLoading] = useState(false);
@@ -68,6 +69,13 @@ const AddPokemon = ({ onClose, onPokemonAdded }) => {
         });
     };
 
+    const handleShinyImageChange = (e) => {
+        setFormData({
+            ...formData,
+            shinyImage: e.target.value
+        });
+    };
+
     const handleSubmit = async (e) => {
         e.preventDefault();
         setError('');
@@ -99,11 +107,12 @@ const AddPokemon = ({ onClose, onPokemonAdded }) => {
                 onPokemonAdded(newPokemon);
                 onClose();
             } else {
-                setError('Erreur lors de la création du Pokémon');
+                const errorData = await response.json();
+                setError(errorData.error || 'Erreur lors de la création du Pokémon');
             }
         } catch (err) {
             console.error('Erreur:', err);
-            setError('Erreur lors de la création du Pokémon');
+            setError('Erreur lors de la création du Pokémon: ' + err.message);
         } finally {
             setIsLoading(false);
         }
@@ -174,6 +183,16 @@ const AddPokemon = ({ onClose, onPokemonAdded }) => {
                                 type="url"
                                 value={formData.image}
                                 onChange={handleImageChange}
+                                placeholder="https://..."
+                            />
+                        </div>
+
+                        <div className="form-group">
+                            <label>URL de l'image Shiny</label>
+                            <input
+                                type="url"
+                                value={formData.shinyImage}
+                                onChange={handleShinyImageChange}
                                 placeholder="https://..."
                             />
                         </div>
